@@ -3,12 +3,13 @@
 function pdo_connect_mysql() {
     try {
         // Connect to the MySQL database using the PDO interface
-    	$pdo = new PDO('mysql:host=' . '140.122.184.126' . ';dbname=' . 'team5' . ';charset=utf8', 'team5', 'NAXoQo');
+    	$pdo = new PDO('mysql:host=' . '127.0.0.1' . ';dbname=' . 'shopping_cart' . ';charset=utf8', 'team5', 'NAXoQo');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     } catch (PDOException $exception) {
     	// Could not connect to the MySQL database! If you encounter this error, ensure your db settings are correct in the config file!
-    	exit('Failed to connect to database!');
+    	echo 'Connection failed: ' . $exception->getMessage();
+        exit;
     }
 }
 // Function to retrieve a product from cart by the ID and options string
